@@ -21,6 +21,7 @@ class GLSLangConan(ConanFile):
     generators = "cmake"
     no_copy_source = True
 
+
     def source(self):
         tools.get(f"{self.url}/archive/{self.version}.tar.gz")
 
