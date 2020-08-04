@@ -5,7 +5,7 @@ from conans.errors import ConanInvalidConfiguration
 
 class GLSLangConan(ConanFile):
     name = "glslang"
-    version = "v2020.2"
+    version = "2020.2"
     url = "https://github.com/KhronosGroup/glslang"
     description = "Khronos reference front-end for GLSL and ESSL, and sample SPIR-V generator"
     exports_sources = ["CMakeLists.txt", "conanize.patch"]
