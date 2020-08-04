@@ -10,7 +10,6 @@ class GLSLangConan(ConanFile):
     description = "Khronos reference front-end for GLSL and ESSL, and sample SPIR-V generator"
     exports_sources = ["CMakeLists.txt", "conanize.patch"]
     settings = "os", "arch", "compiler", "build_type"
-    requires = ("spirv-tools/v2020.3")
     
     options = {
         "shared": [True, False],
@@ -40,6 +39,10 @@ class GLSLangConan(ConanFile):
     @property
     def _build_subfolder(self):
         return "build_subfolder"
+    
+    def requirements(self):
+        if self.options.enable_optimizer:
+            self.requires("spirv-tools/v2020.3")
     
     def config_options(self):
         if self.settings.os == "Windows":
