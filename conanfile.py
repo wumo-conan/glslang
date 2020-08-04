@@ -15,7 +15,7 @@ class GlslangConan(ConanFile):
     exports_sources = ["CMakeLists.txt", "conanize.patch"]
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
-    short_paths = True
+    # short_paths = True
     options = {
         "shared": [True, False],
         "fPIC": [True, False],
