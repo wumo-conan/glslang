@@ -4,17 +4,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 --- SPIRV/CMakeLists.txt	(revision 3ee5f2f1d3316e228916788b300d786bb574d337)
-+++ SPIRV/CMakeLists.txt	(date 1596504252940)
-@@ -68,7 +68,7 @@
-     doc.h)
- 
- add_library(SPIRV ${LIB_TYPE} ${SOURCES} ${HEADERS})
--target_link_libraries(SPIRV PRIVATE MachineIndependent)
-+#target_link_libraries(SPIRV PRIVATE MachineIndependent)
- set_property(TARGET SPIRV PROPERTY FOLDER glslang)
- set_property(TARGET SPIRV PROPERTY POSITION_INDEPENDENT_CODE ON)
- target_include_directories(SPIRV PUBLIC
-@@ -92,14 +92,17 @@
++++ SPIRV/CMakeLists.txt	(date 1596542072020)
+@@ -92,14 +92,15 @@
  endif()
  
  if(ENABLE_OPT)
@@ -30,29 +21,21 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +#        PRIVATE ${spirv-tools_SOURCE_DIR}/include
 +#        PRIVATE ${spirv-tools_SOURCE_DIR}/source
 +#    )
-+#    target_link_libraries(SPIRV PRIVATE MachineIndependent SPIRV-Tools-opt)
++#    target_link_libraries(SPIRV PRIVATE SPIRV-Tools-opt)
 +#    target_include_directories(SPIRV PUBLIC
 +#        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../External>
 +#        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/External>)
-+    target_link_libraries(SPIRV PRIVATE MachineIndependent ${CONAN_LIBS})
-+else()
-+    target_link_libraries(SPIRV PRIVATE MachineIndependent)
++    target_link_libraries(SPIRV PRIVATE ${CONAN_LIBS})
  endif(ENABLE_OPT)
  
  if(WIN32)
-@@ -134,4 +137,5 @@
-     install(EXPORT SPIRVTargets DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake)
- 
-     install(FILES ${HEADERS} ${SPVREMAP_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/glslang/SPIRV/)
-+    install(FILES ${HEADERS} ${SPVREMAP_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/SPIRV/)
- endif(ENABLE_GLSLANG_INSTALL)
 Index: CMakeLists.txt
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 --- CMakeLists.txt	(revision 3ee5f2f1d3316e228916788b300d786bb574d337)
-+++ CMakeLists.txt	(date 1596503395322)
++++ CMakeLists.txt	(date 1596542102470)
 @@ -318,9 +318,9 @@
      add_subdirectory(External)
  endif()
